@@ -1,31 +1,25 @@
 ---
-title: "MD_analysis"
-author: V. Deepak
+title: "Compensation data analysis"
+author: "V. Deepak"
 output: html_document
 ---
-
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE, error=FALSE,message = FALSE,warning = FALSE)
+```
+```{r}
+##library
+library(tidyverse)
+##data 
+compensation <-read.csv("Data/compensation.csv")
+require(readr)
+##summary
+summary(compensation)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-
-
-##data summary Root
-```{r compensation, echo=FALSE}
-summary(compensation$Root)
-```
-
-## Including web image
+# Including web image
 ![](https://i1.wp.com/www.tropicalherping.com/tourism/photos/RV700-01-07.jpg)
-
-##GGplot1
-```{r pressure, echo=FALSE}
+##GGplot1 Scatter plot root vs fruit
+```{r}
 ggplot(compensation, aes(x=Root, y=Fruit, col=Grazing))+
   geom_point(size=4)+
   ylab("Fruit(pecs)")+
@@ -33,22 +27,22 @@ ggplot(compensation, aes(x=Root, y=Fruit, col=Grazing))+
   scale_color_manual(values=c("green","blue"))+
   theme_bw()
 ```
-
-##GGplot2
-```{r pressure, echo=FALSE}
+###GGplot2 Histogram fruits in Grazed vs Ungrazed areas
+```{r}
 ggplot(compensation, aes(x=Fruit, fill=Grazing)) +
     geom_histogram(bins=20,)+
     facet_wrap(~Grazing,ncol=1)+
+    ylab("Counts")+
+    xlab("Fruit(pecs)")+
     scale_fill_manual(values=c("green","blue"))
 ```
-##GGplot3
-```{r pressure, echo=FALSE}
+####GGplot3 Boxplots with sampling points jittered
+```{r}
   ggplot(compensation, aes(x=Grazing,y=Fruit,fill=Grazing)) +
     geom_boxplot()+
     geom_jitter(alpha=0.8)+
+    ylab("Fruit(pecs)")+
+    xlab("")+
     scale_fill_manual(values=c("green","blue"))
 ```
-  
-
-
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
