@@ -24,20 +24,31 @@ summary(compensation$Root)
 ## Including web image
 ![](https://i1.wp.com/www.tropicalherping.com/tourism/photos/RV700-01-07.jpg)
 
-##color by catagories
+##GGplot1
 ```{r pressure, echo=FALSE}
 ggplot(compensation, aes(x=Root, y=Fruit, col=Grazing))+
   geom_point(size=4)+
   ylab("Fruit(pecs)")+
-  xlab("Root(mm)")
+  xlab("Root(mm)")+
+  scale_color_manual(values=c("green","blue"))+
+  theme_bw()
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
+##GGplot2
 ```{r pressure, echo=FALSE}
-plot(pressure)
+ggplot(compensation, aes(x=Fruit, fill=Grazing)) +
+    geom_histogram(bins=20,)+
+    facet_wrap(~Grazing,ncol=1)+
+    scale_fill_manual(values=c("green","blue"))
 ```
+##GGplot3
+```{r pressure, echo=FALSE}
+  ggplot(compensation, aes(x=Grazing,y=Fruit,fill=Grazing)) +
+    geom_boxplot()+
+    geom_jitter(alpha=0.8)+
+    scale_fill_manual(values=c("green","blue"))
+```
+  
+
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
