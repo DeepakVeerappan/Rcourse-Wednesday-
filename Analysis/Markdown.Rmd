@@ -12,7 +12,7 @@ library(tidyverse)
 ##data 
 compensation <-read.csv("Data/compensation.csv")
 require(readr)
-##summary
+##data summary 
 summary(compensation)
 ```
 
@@ -27,7 +27,7 @@ ggplot(compensation, aes(x=Root, y=Fruit, col=Grazing))+
   scale_color_manual(values=c("green","blue"))+
   theme_bw()
 ```
-###GGplot2 Histogram fruits in Grazed vs Ungrazed areas
+###GGplot2 Histogram of fruits in Grazed vs Ungrazed areas
 ```{r}
 ggplot(compensation, aes(x=Fruit, fill=Grazing)) +
     geom_histogram(bins=20,)+
@@ -36,7 +36,7 @@ ggplot(compensation, aes(x=Fruit, fill=Grazing)) +
     xlab("Fruit(pecs)")+
     scale_fill_manual(values=c("green","blue"))
 ```
-####GGplot3 Boxplots with sampling points jittered
+####GGplot3 Boxplots showing occurence of fruits in grazed vs ungrazed ares. Note: sampling points are jittered
 ```{r}
   ggplot(compensation, aes(x=Grazing,y=Fruit,fill=Grazing)) +
     geom_boxplot()+
