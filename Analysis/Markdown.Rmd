@@ -14,13 +14,23 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
+
+
+##data summary Root
+```{r compensation, echo=FALSE}
+summary(compensation$Root)
 ```
 
 ## Including web image
 ![](https://i1.wp.com/www.tropicalherping.com/tourism/photos/RV700-01-07.jpg)
 
+##color by catagories
+```{r pressure, echo=FALSE}
+ggplot(compensation, aes(x=Root, y=Fruit, col=Grazing))+
+  geom_point(size=4)+
+  ylab("Fruit(pecs)")+
+  xlab("Root(mm)")
+```
 
 ## Including Plots
 
